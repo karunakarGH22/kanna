@@ -1,0 +1,55 @@
+<h2>Accept Employee Details</h2>
+
+<form name="addEmp" #addEmpForm="ngForm" (ngSubmit)="addEmpForm.valid && AddEmployee(addEmpForm)">
+    {{employee|json}}
+    <table border="1" cellpadding="10" cellSpacing="0">
+        <tr>
+            <td>Employee Number</td>
+            <td>
+                <input type="text" name="empNumber" #empNumber="ngModel" [(ngModel)]="employee.empNumber" placeholder="Employee Number" required>  <br>
+                <span style="color: red;"  *ngIf="(empNumber.invalid && empNumber.touched) || (empNumber.invalid && addEmpForm.submitted)" >Employee Number is required</span>
+                     
+
+
+            </td>
+        </tr>
+        <tr>
+            <td>Employee Name</td>
+            <td>
+                <input type="text" name="empName" #empName="ngModel" [(ngModel)]="employee.empName" placeholder="Employee Name">
+            </td>
+        </tr>
+        <tr>
+            <td>Employee Salary</td>
+            <td>
+                <input type="text" name="empSalary" #empSalary="ngModel" [(ngModel)]="employee.empSalary" placeholder="Employee Salary">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add Employee"></td>
+        </tr>
+    </table>
+
+
+</form>
+    
+
+
+<h2>List of Employee</h2>
+
+<table border="1" cellpadding="10" [cellSpacing]="10">
+
+    <tr>
+        <th>Emp. Number</th>
+        <th>Emp. Name</th>
+        <th>Emp. Salary</th>
+    </tr>
+    <tr *ngFor="let item of employees">
+        <td align="center">{{item.empNumber}}</td>
+        <td>{{item.empName}}</td>
+        <td align="right ">{{item.empSalary}}</td>
+
+    </tr>
+        
+</table>
